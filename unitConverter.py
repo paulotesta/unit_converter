@@ -1,3 +1,4 @@
+# TODO: Implement config with the website keys
 import requests
 
 CURRENCY_URL = " "
