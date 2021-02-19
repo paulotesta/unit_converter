@@ -1,7 +1,7 @@
-# TODO: Implement config with the website keys
 import requests
+import json
 
-CURRENCY_URL = " "
+CONFIG_FILENAME = 'config.json'
 
 MASS = "m"
 TEMPERATURE = "t"
@@ -287,7 +287,11 @@ def volume():
 
 
 def currency():
-    response = requests.get(CURRENCY_URL)
+    with open(CONFIG_FILENAME) as config_file:
+        data = json.load(config_file)
+    currency_url = "http://data.fixer.io/api/latest?access_key={}&format=1".\
+                   format(data['key'])
+    response = requests.get(currency_url)
     response = response.json()
 
     print("Please select the starting currency as a 3 letter international " +
